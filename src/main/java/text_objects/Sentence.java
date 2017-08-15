@@ -124,4 +124,27 @@ public class Sentence {
         return sb.toString();
     }
 
+    public String findMaxPalindromeFromText(String text){
+        String [] sentences = Sentence.getTextSentences(text);
+        String palindrome="";
+        for (int i = 0; i < sentences.length; i++) {
+            String [] words= Word.getWords(sentences[i]);
+           nextWord: for (int j = 0; j < words.length; j++) {
+                char [] wordChars= words[j].toCharArray();
+                for (int k = 0; k <wordChars.length/2; k++) {
+                   if(wordChars[k]!=wordChars[wordChars.length-k-1]){
+                       continue nextWord;
+                   }
+                }
+                if(palindrome.length()<words[j].length()&&words[j].length()>1){
+                    palindrome=words[j];
+                }
+            }
+        }
+        if (palindrome.isEmpty()){
+            return "There is no palindrome in the text";
+        }
+        return palindrome;
+    }
+
 }

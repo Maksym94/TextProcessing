@@ -1,7 +1,7 @@
 package text_objects;
 
-import comparators.AscendingSpecifiedLetterWordComparator;
-import comparators.AscendingVowelSymbolsWordComparator;
+import comparators.SpecifiedLetterWordComparator;
+import comparators.AcsendingVowelSymbolsWordComparator;
 import comparators.StartVowelFirstConsonaltWordComparator;
 
 import java.util.ArrayList;
@@ -12,16 +12,19 @@ import java.util.regex.Pattern;
 
 public class Symbol {
 
-    public static final char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l',
+    public static final char[] ALPHABET = {'a','b','c','d','e','f','g','h','i','j','k','l',
             'm','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    public static final char[] CONSONANTS = {'b','c','d','f','g','h','j','k','l',
+            'm','n','p','q','r','s','t','v','w','x','z'};
+    private static final char[] VOWELS ={'a','e','i','o','u','y', 'A', 'E', 'I', 'O', 'U','Y'};
 
 
     public String printWordsInAlphabetOrder(String text) {
         StringBuilder sb = new StringBuilder();
 
         List<String> allWords = Word.getAllWordsFromText(text);
-        for (int i = 0; i < alphabet.length; i++) {
-            char symbol = alphabet[i];
+        for (int i = 0; i < ALPHABET.length; i++) {
+            char symbol = ALPHABET[i];
             boolean makeRedLine=false;
             for (int j = 0; j < allWords.size(); j++) {
                 if (allWords.get(j).charAt(0)==symbol){
@@ -37,26 +40,13 @@ public class Symbol {
     }
 
     public String sortWordsAcsVowelLetters(String text){
-       /* String[] sentences = Sentence.getTextSentences(text);
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i <sentences.length ; i++) {
-            sb.append(sentences[i]);
-        }
-        String [] sentencesInOneLine= sb.toString().split("\n");
-        sb= new StringBuilder();
-        List<String> allWords = new ArrayList<>();
-        for (int i = 0; i < sentencesInOneLine.length; i++) {
-            String [] words = sentencesInOneLine[i].split(" ");
-            for (int j = 0; j <words.length ; j++) {
-                allWords.add(words[j]);
-            }
-        }*/
+
         StringBuilder sb = new StringBuilder();
 
         List<String> allWords = Word.getAllWordsFromText(text);
 
          String[] sortedWords = allWords.toArray(new String[allWords.size()]);
-        Arrays.sort(sortedWords, new AscendingVowelSymbolsWordComparator());
+        Arrays.sort(sortedWords, new AcsendingVowelSymbolsWordComparator());
         for (int i = 0; i < sortedWords.length; i++) {
             sb.append(sortedWords[i]).append(" ");
             //This made for readable, not to put all words in one line
@@ -91,13 +81,13 @@ public class Symbol {
         return sb.toString();
     }
 
-    public String sortTextWordsByNumberOfGivenLetters(String text, char letterToFind){
+    public String sortTextWordsByNumberOfGivenLetters(String text, char letterToFind, int sortOrder){
         StringBuilder sb = new StringBuilder();
 
         List<String> allWords = Word.getAllWordsFromText(text);
 
         String[] sortedWords= allWords.toArray(new String[allWords.size()]);
-        Arrays.sort(sortedWords,new AscendingSpecifiedLetterWordComparator(letterToFind));
+        Arrays.sort(sortedWords,new SpecifiedLetterWordComparator(letterToFind,sortOrder));
         for (int i = 0; i < sortedWords.length; i++) {
             sb.append(sortedWords[i]).append(" ");
             if(i!=0 && i%12==0){
@@ -106,6 +96,5 @@ public class Symbol {
         }
         return sb.toString();
     }
-
 
 }

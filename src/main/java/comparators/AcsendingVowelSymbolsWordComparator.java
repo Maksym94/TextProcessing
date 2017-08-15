@@ -2,7 +2,8 @@ package comparators;
 
 import java.util.Comparator;
 
-public class AscendingVowelSymbolsWordComparator implements Comparator<String>{
+public class AcsendingVowelSymbolsWordComparator implements Comparator<String>{
+
 
     private static final char[] VOWEL_SYMBOLS ={'a','e','i','o','u','y', 'A', 'E', 'I', 'O', 'U','Y'};
 
@@ -37,16 +38,12 @@ public class AscendingVowelSymbolsWordComparator implements Comparator<String>{
         proportionVowelToAnotherSymbolsWord1 =(double) countVowelSymbolsWord1/(double) word1.length;
         proportionVowelToAnotherSymbolsWord2 =(double) countVowelSymbolsWord2/(double) word2.length;
 
-
-        if(proportionVowelToAnotherSymbolsWord1<proportionVowelToAnotherSymbolsWord2){
-            return -1;
-        }
-        else if (proportionVowelToAnotherSymbolsWord1==proportionVowelToAnotherSymbolsWord2){
-            return 0;
-        }
-        else {
-            return 1;
-        }
+            if (proportionVowelToAnotherSymbolsWord1 < proportionVowelToAnotherSymbolsWord2) {
+                return -1;
+            } else if (proportionVowelToAnotherSymbolsWord1 == proportionVowelToAnotherSymbolsWord2) {
+                return 0;
+            }
+                return 1;
     }
 
 

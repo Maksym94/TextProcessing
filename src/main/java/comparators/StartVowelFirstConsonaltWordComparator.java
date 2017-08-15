@@ -3,7 +3,7 @@ package comparators;
 import java.util.Comparator;
 
 public class StartVowelFirstConsonaltWordComparator implements Comparator<String> {
-    public static final char[] CONSONANTS = {'b','c','d','f','g','h','j','k','l',
+    private static final char[] CONSONANTS = {'b','c','d','f','g','h','j','k','l',
             'm','n','p','q','r','s','t','v','w','x','z'};
     @Override
     public int compare(String o1, String o2) {

@@ -117,4 +117,66 @@ public class Word {
         }
         return sb.toString();
     }
+
+    public String deleteConsonantWordsSpecifiedLength(String text, int length) {
+        String[] sentences = Sentence.getTextSentences(text);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < sentences.length; i++) {
+            String[] words = Word.getWords(sentences[i]);
+           newWord: for (int j = 0; j < words.length; j++) {
+                for (int k = 0; k < Symbol.CONSONANTS.length; k++) {
+                    if (words[j].charAt(0) == Symbol.CONSONANTS[k]&& words[j].length()==length) {
+                        continue newWord;
+                    }
+                }
+               sb.append(words[j]);
+                if(j!=words.length-1) {
+                    sb.append(" ");
+                }
+            }
+            sb.append(".");
+        }
+        return sb.toString();
+    }
+
+    public String deleteAllOccurrencesOfFirstLetterInWord(String text) {
+        String[] sentences = Sentence.getTextSentences(text);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < sentences.length; i++) {
+            String[] words = Word.getWords(sentences[i]);
+            for (int j = 0; j <words.length; j++) {
+                char[] wordChars= words[j].toCharArray();
+                char firstLetter=wordChars[0];
+                for (int k = 0; k <wordChars.length ; k++) {
+                    if(wordChars[k]!=firstLetter||wordChars[k]=='\n'||wordChars[k]=='\r'){
+                        sb.append(wordChars[k]);
+                    }
+                }
+                if(j!=words.length-1){
+                    sb.append(" ");
+                }
+            }
+            sb.append(".");
+        }
+        return sb.toString();
+    }
+
+    public String replaceWordsSpecifiedLengthWithSubstring(String text, String substring,int lengthOfWord) {
+        String[] sentences = Sentence.getTextSentences(text);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < sentences.length; i++) {
+            String[] words = Word.getWords(sentences[i]);
+            for (int j = 0; j < words.length; j++) {
+                if(words[j].length()==lengthOfWord){
+                    words[j]= substring;
+                }
+                sb.append(words[j]);
+                if(i!=sentences.length-1){
+                    sb.append(" ");
+                }
+            }
+            sb.append(".");
+        }
+        return sb.toString();
+    }
 }
