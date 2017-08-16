@@ -13,6 +13,21 @@ public class Word {
         return sentence.split(" ");
     }
 
+    public static String[] getWordsWithoutSpaces(String sentence){
+        String []words = getWords(sentence);
+        if (words[0].equals("")){
+            String[] rightWords= new String [words.length-1];
+            System.arraycopy(words,1,rightWords,0,rightWords.length);
+            return rightWords;
+        }
+        if(words[words.length-1].equals("")){
+            String[] rightWords= new String [words.length-1];
+            System.arraycopy(words,0,rightWords,0,rightWords.length);
+            return rightWords;
+        }
+        return words;
+    }
+
     public static List<String> getAllWordsFromText(String text){
         String[] sentences = Sentence.getTextSentences(text);
         StringBuilder sb = new StringBuilder();

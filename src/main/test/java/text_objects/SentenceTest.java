@@ -12,8 +12,7 @@ public class SentenceTest {
 
     @Test
     public void findMaxRepeatableSentencesWithSameWords(){
-        String text = "This is the first sentence. " +
-                "I add one more. Check if here word word repeat.";
+        String text = "This is the first sentence. I add one more. Check if here word word repeat.";
         assertEquals(1,sentence.getMaxAmountSentencesWithRepeatableWords(text));
     }
 

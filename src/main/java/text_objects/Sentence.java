@@ -54,21 +54,23 @@ public class Sentence {
         String[] sentences= getTextSentences(text);
         String[][] allWords= new String[sentences.length][];
         for (int i = 0; i < sentences.length; i++) {
-            String[] words = Word.getWords(sentences[i]);
+            String[] words = Word.getWordsWithoutSpaces(sentences[i]);
             allWords[i]= words;
 
         }
         for (int i = 0; i < allWords.length; i++) {
-            for (int j = i+1; j <allWords.length ; j++) {
-                if(allWords[i].length>allWords[j].length){
-                    String[] temp = allWords[i];
-                    allWords[i] = allWords[j];
-                    allWords[j]=temp;
+           // System.out.print("All words length :"+Arrays.toString(allWords[i])+" ");
+            for (int j = 1; j <allWords.length-1 ; j++) {
+                    if(allWords[j-1].length>allWords[j].length){
+                        String[] temp = allWords[j-1];
+                        allWords[j-1] = allWords[j];
+                        allWords[j]=temp;
+                    }
 
-                }
 
             }
         }
+        System.out.println();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < allWords.length; i++) {
             for (int j = 0; j < allWords[i].length; j++) {
